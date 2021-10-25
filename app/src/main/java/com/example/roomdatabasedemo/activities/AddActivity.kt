@@ -53,6 +53,8 @@ class AddActivity : AppCompatActivity() {
                     age.text.toString().toInt()
                 )
                 viewModel.addUser(user)
+                Toast.makeText(this,"Successfully Details Entered",Toast.LENGTH_SHORT).show()
+                finish()
             }
         }
     }
