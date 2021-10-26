@@ -4,12 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.roomdatabasedemo.R
 import com.example.roomdatabasedemo.adapter.UserAdapter
+import com.example.roomdatabasedemo.database.User
 import com.example.roomdatabasedemo.database.UserViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -33,17 +34,25 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        setRecyclerView()
+    }
+
+    private fun setRecyclerView(){
         viewModel.readAllData.observe(this, Observer {
-            Log.i("Users :","$it")
-            recyclerView.adapter = UserAdapter(this,it)
+            val userAdapter = UserAdapter(this,it)
+            recyclerView.adapter = userAdapter
+
+            userAdapter.setOnClickListener(object : UserAdapter.OnClickListener{
+                override fun onClick(position: Int, user: User) {
+                    val intent = Intent(this@MainActivity,UpdateActivity::class.java)
+                    intent.putExtra(USER_DATA,user)
+                    startActivity(intent)
+                }
+            })
         })
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        viewModel.readAllData.observe(this, Observer {
-            recyclerView.adapter = UserAdapter(this,it)
-        })
+    companion object{
+        const val USER_DATA = "user_data"
     }
 }
