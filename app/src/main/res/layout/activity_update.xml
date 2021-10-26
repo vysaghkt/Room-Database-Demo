@@ -19,16 +19,18 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:hint="Name"/>
+        android:hint="Name"
+        android:inputType="text"/>
 
     <EditText
-        android:id="@+id/update_age_et"
+        android:id="@+id/update_age"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:hint="Age"/>
+        android:hint="Age"
+        android:inputType="number"/>
 
     <Button
         android:id="@+id/update_btn"
@@ -38,6 +40,16 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:text="UPDATE"
+        android:background="@color/design_default_color_primary"/>
+
+    <Button
+        android:id="@+id/delete_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="DELETE"
         android:background="@color/design_default_color_primary"/>
 
 </LinearLayout>
